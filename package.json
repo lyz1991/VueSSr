@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client": "webpack --config ./config/client-config.js",
-    "server": "webpack --config ./config/server-config.js",
+    "client": "webpack --config ./config/webpack.client.config.js",
+    "server": "webpack --config ./config/webpack.server.config.js",
     "dev": "npm run server && npm run client && node main.js"
   },
   "author": "",
