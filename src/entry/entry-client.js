@@ -25,13 +25,11 @@ router.onReady(() => {
     const activated = matched.filter((c, i) => {
       return diffed || (diffed = (prevMatched[i] !== c))
     })
-    console.log('activated', activated.length)
     if (!activated.length) {
       return next()
     }
     
     // 这里如果有加载指示器(loading indicator)，就触发
-    console.log('client')
     Promise.all(activated.map(c => {
       if (c.asyncData) {
         return c.asyncData({ store, route: to })

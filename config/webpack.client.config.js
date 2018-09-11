@@ -7,7 +7,9 @@ const merge = require('webpack-merge');
 const base = require('./base-config');
 
 module.exports = merge(base, {
-  entry:  'entry/entry-client.js',
+  entry:{
+    app: 'entry/entry-client.js'
+  },
   output: {
     path: path.resolve(__dirname, '../build')
   },

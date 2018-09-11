@@ -1,7 +1,7 @@
 <style src="./name.scss" lang="scss" scoped></style>
 <template>
   <div class="name">
-    lyz
+    lyeez
   </div>
 </template>
 <script>
