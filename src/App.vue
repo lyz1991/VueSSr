@@ -2,7 +2,7 @@
     <div class="demo">
         {{content}} number:  {{id}}
         <Name></Name>
-
+        <router-view/>
     </div>
 </template>
 <script>

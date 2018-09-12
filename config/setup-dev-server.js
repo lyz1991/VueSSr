@@ -45,6 +45,7 @@ module.exports = function setupDevServer (app, templatePath, cb) {
   })
   app.use(devMiddleware)
   clientCompiler.plugin('done', stats => {
+    console.log('done')
     stats = stats.toJson()
     if (stats.errors.length) {
       console.log('error')
