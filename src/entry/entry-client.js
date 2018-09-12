@@ -1,21 +1,29 @@
-/**
- * Created by mac on 2018/8/15.
- */
 import { createApp } from '../app'
-
+import Vue from 'vue'
 // 客户端特定引导逻辑……
 
 const { app, router, store } = createApp()
 
 // 这里假定 App.vue 模板中根元素具有 `id="app"`
+Vue.mixin({
+  beforeRouteUpdate (to, from, next) {
+    const { asyncData } = this.$options
+    if (asyncData) {
+      asyncData({
+        store: this.$store,
+        route: to
+      }).then(next).catch(next)
+    } else {
+      next()
+    }
+  }
+})
 router.onReady(() => {
-  console.log('onReady', router.beforeResolve)
   // 添加路由钩子函数，用于处理 asyncData.
   // 在初始路由 resolve 后执行，
   // 以便我们不会二次预取(double-fetch)已有的数据。
   // 使用 `router.beforeResolve()`，以便确保所有异步组件都 resolve。
   router.beforeResolve((to, from, next) => {
-    console.log('before')
     const matched = router.getMatchedComponents(to)
     const prevMatched = router.getMatchedComponents(from)
     
