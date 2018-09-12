@@ -1,11 +1,11 @@
 const app = require('express')()
 const express = require('express')
 const webpack = require('webpack')
+const port = process.env.port || require('./package.json').config.port
 const path = require('path')
 const { createBundleRenderer } = require('vue-server-renderer')
 const isDev = process.env.NODE_ENV === 'dev'
 let renderer
-let readyPromise
 app.use(express.static('./build'))
 function createRenderer (bundle, options) {
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
@@ -18,7 +18,7 @@ function createRenderer (bundle, options) {
   }))
 }
 if (isDev) {
-  readyPromise = require('./config/setup-dev-server')(
+  require('./config/setup-dev-server')(
     app,
     path.resolve(__dirname, './index.template.html'),
     (bundle, options) => {
@@ -44,17 +44,11 @@ const render = (req, res) => {
       res.status(500).end('Internal Server Error')
       return
     }
-    console.log('noerr')
     res.end(html)
   })
 }
-app.get('*', isDev ? (req, res) => {
-  console.log('DEV')
-  readyPromise.then(() => {
-    return render(req, res)
-  })
-} : render)
+app.get('*', render)
 
-app.listen(8090, () => {
-  console.log('ok')
+app.listen(port, () => {
+  console.log(`server is run on ${port}`)
 })

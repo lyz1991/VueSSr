@@ -11,6 +11,9 @@
     "start:pro": "npm run webpack && cross-env NODE_ENV=prod node main.js"
   },
   "author": "",
+  "config": {
+    "port": 8090
+  },
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
