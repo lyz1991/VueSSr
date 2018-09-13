@@ -1,7 +1,7 @@
 const app = require('express')()
 const express = require('express')
 const webpack = require('webpack')
-const port = process.env.port || require('./package.json').config.port
+const port = process.env.port || require('./package.json').config.ssrport
 const path = require('path')
 const { createBundleRenderer } = require('vue-server-renderer')
 const isDev = process.env.NODE_ENV === 'dev'
@@ -47,6 +47,7 @@ const render = (req, res) => {
     res.end(html)
   })
 }
+require('./config/proxy')(app)
 app.get('*', render)
 
 app.listen(port, () => {

@@ -49,6 +49,7 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, '../src/components'),
       'entry': path.resolve(__dirname, '../src/entry'),
+      'const': path.resolve(__dirname, '../src/const')
     },
     extensions: [".js", ".vue", ".scss"]
   }

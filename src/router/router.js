@@ -10,11 +10,11 @@ export function createRouter () {
       {
         path: "/",
         name: 'app',
-        component: () => import("../App.vue")
+        component: () => import("../pages/server.vue")
       }, {
-        path: "/demo",
-        name: "demo",
-        component: () => import("../pages/demo.vue")
+        path: "/client",
+        name: "client",
+        component: () => import("../pages/client.vue")
       }
     ]
   })

@@ -8,7 +8,13 @@ const base = require('./base-config');
 
 module.exports = merge(base, {
   entry:{
-    app: 'entry/entry-client.js'
+    app: 'entry/entry-client.js',
+    vendor: [
+      "vue",
+      "vuex",
+      "vue-router",
+      'whatwg-fetch',
+    ]
   },
   output: {
     path: path.resolve(__dirname, '../build')

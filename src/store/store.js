@@ -3,6 +3,8 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as Types from './action_types'
+import { serverAjax } from '../api/service'
 
 Vue.use(Vuex)
 
@@ -12,17 +14,20 @@ Vue.use(Vuex)
 export function createStore () {
   return new Vuex.Store({
     state: {
-      id: ''
+      id: '',
+      github: {
+      
+      }
     },
     actions: {
-      fetchItem ({ commit }, id) {
-        return commit('setItem',  id)
+      async fetchItem ({ commit }, param) {
+        const data = await serverAjax()
+        commit(Types.SET_ITEM,  data)
       }
     },
     mutations: {
-      setItem (state,  id) {
-        console.log('id', id)
-        state.id = id
+      [Types.SET_ITEM] (state,  res) {
+        state.github = res
       }
     }
   })
