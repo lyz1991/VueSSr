@@ -6,7 +6,7 @@ const merge = require('webpack-merge');
 const base = require('./base-config');
 module.exports =  merge(base, {
   // 将 entry 指向应用程序的 server entry 文件
-  entry: ['whatwg-fetch','entry/entry-server.js'],
+  entry: 'entry/entry-server.js',
 
   // 这允许 webpack 以 Node 适用方式(Node-appropriate fashion)处理动态导入(dynamic import)，
   // 并且还会在编译 Vue 组件时，

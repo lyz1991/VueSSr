@@ -6,7 +6,6 @@ const path = require('path')
 const { createBundleRenderer } = require('vue-server-renderer')
 const isDev = process.env.NODE_ENV === 'dev'
 let renderer
-app.use(express.static('./build'))
 function createRenderer (bundle, options) {
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
   return createBundleRenderer(bundle, Object.assign(options, {
@@ -18,6 +17,7 @@ function createRenderer (bundle, options) {
   }))
 }
 if (isDev) {
+  require('./config/proxy')(app)
   require('./config/setup-dev-server')(
     app,
     path.resolve(__dirname, './index.template.html'),
@@ -26,6 +26,7 @@ if (isDev) {
     }
   )
 } else {
+  app.use(express.static('./build'))
   renderer = createBundleRenderer(require('./build/vue-ssr-server-bundle.json'), {
     template: require('fs').readFileSync('./index.template.html', 'utf-8'),
     clientManifest: require('./build/vue-ssr-client-manifest.json'),
@@ -38,16 +39,14 @@ const render = (req, res) => {
     title: 'hello',
     meta:`<meta charset="UTF-8">`
   }
-  renderer.renderToString(context, (err, html) => {
-    if (err) {
-      console.log(err)
-      res.status(500).end('Internal Server Error')
-      return
-    }
-    res.end(html)
-  })
+  try {
+    renderer.renderToString(context, (err, html) => {
+      res.end(html)
+    })
+  } catch (e) {
+    console.log(e)
+  }
 }
-require('./config/proxy')(app)
 app.get('*', render)
 
 app.listen(port, () => {
