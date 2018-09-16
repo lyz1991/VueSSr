@@ -4,7 +4,7 @@
 const path = require('path')
 module.exports = {
   output: {
-    publicPath: '/build/',
+    publicPath: '/',
     path: path.resolve(__dirname, '../build')
   },
   module: {

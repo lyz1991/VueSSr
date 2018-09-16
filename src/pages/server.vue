@@ -22,6 +22,9 @@
         return this.$store.state.github
       }
     },
+    mounted () {
+      console.log('mounted')
+    },
     data () {
       return {
         content: 'github信息'
