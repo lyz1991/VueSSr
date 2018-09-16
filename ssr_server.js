@@ -5,6 +5,7 @@ const port = process.env.port || require('./package.json').config.ssrport
 const path = require('path')
 const { createBundleRenderer } = require('vue-server-renderer')
 const isDev = process.env.NODE_ENV === 'dev'
+const LRU = require('lru-cache')
 let renderer
 function createRenderer (bundle, options) {
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
@@ -30,6 +31,9 @@ if (isDev) {
   renderer = createBundleRenderer(require('./build/vue-ssr-server-bundle.json'), {
     template: require('fs').readFileSync('./index.template.html', 'utf-8'),
     clientManifest: require('./build/vue-ssr-client-manifest.json'),
+    cache: LRU({
+      max: 10000,
+    }),
     runInNewContext: false
   })
 }
