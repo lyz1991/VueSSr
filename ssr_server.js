@@ -30,7 +30,7 @@ if (isDev) {
   app.use(express.static('./build'))
   renderer = createBundleRenderer(require('./build/vue-ssr-server-bundle.json'), {
     template: require('fs').readFileSync('./index.template.html', 'utf-8'),
-    clientManifest: require('./build/vue-ssr-client-manifest.json'),
+    clientManifest: require('./build/vue-ssr-client-manifest.json'), //如果没这个，客户端交互无法激活
     cache: LRU({
       max: 10000,
     }),
