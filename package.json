@@ -8,12 +8,14 @@
     "server": "webpack --config ./config/webpack.server.config.js",
     "webpack": "npm run server && npm run client",
     "test": "jest",
-    "start:dev": "npm run webpack && cross-env NODE_ENV=dev node ssr_server.js node server.js",
+    "dev": "npm run webpack && cross-env NODE_ENV=dev",
+    "pro": "npm run webpack && cross-env NODE_ENV=prod",
+    "start:dev": "npm run webpack && cross-env NODE_ENV=dev node ssr_server.js",
     "start:pro": "npm run webpack && cross-env NODE_ENV=prod node ssr_server.js"
   },
   "author": "",
   "config": {
-    "ssrport": 8090,
+    "ssrport": 8080,
     "serverport": 5000
   },
   "jest": {
