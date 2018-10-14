@@ -1,0 +1,7 @@
+apps:
+  name: 'app'
+  cwd: ./
+  script: ssr_server.js
+  ignore_watch: node_modules
+  error_file: ./logs/app-err.log
+  out_file: ./logs/app-out.log
