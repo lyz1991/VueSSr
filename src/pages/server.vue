@@ -17,6 +17,11 @@
     async asyncData ({ store, route, ctx }) {
       await store.dispatch('fetchItem')
     },
+    head () {
+      return {
+        title: 'Server 端',
+      }
+    },
     computed: {
       data () {
         return this.$store.state.github

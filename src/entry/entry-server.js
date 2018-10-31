@@ -6,7 +6,9 @@ import { createApp } from '../app'
 export default context => {
   return new Promise((resolve, reject) => {
     const { app, router, store } = createApp()
+    const meta = app.$meta()
     router.push(context.url)
+    context.meta = meta
 
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()

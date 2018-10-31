@@ -7,6 +7,11 @@
 </template>
 <script>
   export default {
-    props: ['lists']
+    props: ['lists'],
+    head() {
+      return {
+        title: 'client 端'
+      }
+    }
   }
 </script>

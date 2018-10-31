@@ -40,7 +40,6 @@ if (isDev) {
 const render = (req, res) => {
   const context = {
     url: req.url,
-    title: 'hello',
     meta:`<meta charset="UTF-8">`
   }
   try {
