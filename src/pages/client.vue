@@ -1,5 +1,8 @@
 <template>
-  <Lists :lists="github"></Lists>
+  <div>
+    <Lists :lists="github"></Lists>
+    <p @click="go">去server</p>
+  </div>
 </template>
 <script>
   import $ from '../api/api-client'
@@ -18,6 +21,13 @@
       $.get('users/github').then(res => {
         this.github = res
       })
+    },
+    methods: {
+      go() {
+        this.$router.push({
+          name: 'app'
+        })
+      }
     }
   }
 </script>
