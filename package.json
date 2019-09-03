@@ -1,8 +1,11 @@
 {
   "name": "vuessr",
   "version": "1.0.0",
-  "description": "",
+  "description": "vue-ssr-demo",
   "main": "index.js",
+  "repository": {
+    "private": true
+  },
   "scripts": {
     "client": "webpack --config ./config/webpack.client.config.js",
     "server": "webpack --config ./config/webpack.server.config.js",
@@ -25,10 +28,10 @@
   "dependencies": {
     "express": "^4.16.3",
     "node-fetch": "^2.2.0",
-    "vue": "^2.5.17",
+    "vue": "^2.6.10",
     "vue-meta": "^1.5.5",
     "vue-router": "^3.0.1",
-    "vue-server-renderer": "^2.5.17",
+    "vue-server-renderer": "^2.6.10",
     "vuex": "^3.0.1",
     "whatwg-fetch": "^2.0.3"
   },
@@ -57,7 +60,7 @@
     "sass-loader": "^7.1.0",
     "vue-loader": "^15.3.0",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.5.17",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.17.0",
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.3.0",
